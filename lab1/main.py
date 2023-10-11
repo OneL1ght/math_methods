@@ -1,31 +1,11 @@
 import argparse
 from datetime import datetime
 from pathlib import Path
-from utils import draw_graph
+from utils import draw_graph, parse_nodes, get_unique_nodes
+from base_argument_parser import graph_argparser
 
 
-arg_parser = argparse.ArgumentParser(add_help=True)
-arg_parser.add_argument(
-    "nodes_sets",
-    type=str,
-    help=f"[<node>]:[<child_node>,...];\nExample: '1:2,5; 2:3,5; 5:4;' ",
-)
-
-
-def parse_nodes(_s: str) -> dict:
-    parts = _s.split(";")
-    relations = {}
-    for inst in parts:
-        if ":" not in inst:
-            continue
-        node, childs = inst.split(":")
-        relations[int(node.strip())] = [int(s.strip()) for s in childs.split(",")]
-    return relations
-
-
-def get_unique_nodes(relations: dict):
-    nodes = relations.keys() | [number for row in relations.values() for number in row]
-    return sorted(list(nodes))
+arg_parser = graph_argparser()
 
 
 def find_contr_reachable_recursively(relations: dict, goal_node, result=None):

@@ -6,6 +6,22 @@ import matplotlib.pyplot as plt
 SEED = 42
 
 
+def parse_nodes(_s: str) -> dict:
+    parts = _s.split(";")
+    relations = {}
+    for inst in parts:
+        if ":" not in inst:
+            continue
+        node, childs = inst.split(":")
+        relations[int(node.strip())] = [int(s.strip()) for s in childs.split(",")]
+    return relations
+
+
+def get_unique_nodes(relations: dict):
+    nodes = relations.keys() | [number for row in relations.values() for number in row]
+    return sorted(list(nodes))
+
+
 def draw_graph(relations: dict, step: int, save_folder: str):
     _from, _to = [], []
     for node, childs in relations.items():
