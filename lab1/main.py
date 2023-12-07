@@ -53,12 +53,12 @@ def group_strong_set(relations: dict, strong_set: set, _name: int) -> dict:
     return relations
 
 
-def remove_strong_set_nodes(nodes: list, strong_set: set):
+def remove_strong_set_nodes(nodes: list, strong_set: set) -> None:
     for n in strong_set:
         nodes.remove(n)
 
 
-def print_nodes_and_children(relations: dict):
+def print_nodes_and_children(relations: dict) -> None:
     print()
     for node, children in relations.items():
         if len(children) < 1:
