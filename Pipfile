@@ -8,6 +8,15 @@ networkx = "*"
 pandas = "*"
 matplotlib = "*"
 black = "*"
+jupyter = "*"
+scikit-learn = "*"
+statsmodels = "*"
+seaborn = "*"
+plotly = "*"
+scipy = "*"
+fipy = "*"
+sympy = "*"
+tensorflow = "*"
 
 [dev-packages]
 
